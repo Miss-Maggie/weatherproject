@@ -1,0 +1,68 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+    <h1>Welcome to my Weather App</h1>
+    <p>This is my final python project</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" id="city" name="city">
+        <button type="submit">Submit</button>
+    </form>
+    {% if data %}
+    <h2>Weather in {{ data.name }}</h2>
+    <table>
+        <tr>
+            <th>Temperature (°C)</th>
+            <td>{{ data.main.temp }}</td>
+        </tr>
+        <tr>
+            <th>Feels Like (°C)</th>
+            <td>{{ data.main.feels_like }}</td>
+        </tr>
+        <tr>
+            <th>Minimum Temperature (°C)</th>
+            <td>{{ data.main.temp_min }}</td>
+        </tr>
+        <tr>
+            <th>Maximum Temperature (°C)</th>
+            <td>{{ data.main.temp_max }}</td>
+        </tr>
+        <tr>
+            <th>Pressure (hPa)</th>
+            <td>{{ data.main.pressure }}</td>
+        </tr>
+        <tr>
+            <th>Humidity (%)</th>
+            <td>{{ data.main.humidity }}</td>
+        </tr>
+        <tr>
+            <th>Wind Speed (m/s)</th>
+            <td>{{ data.wind.speed }}</td>
+        </tr>
+        <tr>
+            <th>Wind Degree</th>
+            <td>{{ data.wind.deg }}</td>
+        </tr>
+        <tr>
+            <th>Weather</th>
+            <td>{{ data.weather.0.description }}</td>
+        </tr>
+        <tr>
+            <th>Cloudiness (%)</th>
+            <td>{{ data.clouds.all }}</td>
+        </tr>
+        <tr>
+            <th>Visibility (m)</th>
+            <td>{{ data.visibility }}</td>
+        </tr>
+        <tr>
+            <th>Country</th>
+            <td>{{ data.sys.country }}</td>
+        </tr>
+    </table>
+    {% endif %}
+</body>
